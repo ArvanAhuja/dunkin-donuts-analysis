@@ -45,9 +45,9 @@ plt.xticks(rotation=45); plt.tight_layout()
 plt.savefig("figs/dozens_over_time.png", dpi=160)
 
 plt.figure()
-plt.plot(df["Date"], df["TotalPrice"], marker="o")
-plt.title("Total Price Over Time")
-plt.xlabel("Date"); plt.ylabel("USD")
+plt.plot(df["Date"], df["CumulativeTotal"], marker="o")
+plt.title("Cumulative Total Revenue")
+plt.xlabel("Date"); plt.ylabel("USD (running total)")
 plt.xticks(rotation=45); plt.tight_layout()
 plt.savefig("figs/total_price_over_time.png", dpi=160)
 
