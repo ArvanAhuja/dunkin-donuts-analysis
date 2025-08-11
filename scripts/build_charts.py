@@ -35,6 +35,7 @@ df = df.dropna(subset=["Date"]).sort_values("Date")
 # 7) Extra metrics
 df["PricePerDozen"] = df["TotalPrice"] / df["Dozens"]
 df["PricePerDonut"] = df["TotalPrice"] / (df["Dozens"] * 12)
+df["CumulativeTotal"] = df["TotalPrice"].cumsum()
 
 # 8) Charts → saved as PNGs in figs/
 plt.figure()
