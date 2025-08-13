@@ -44,7 +44,7 @@ if missing:
     print("Sheet columns:", df.columns.tolist())
     sys.exit(1)
 
-# Rename to clean internal names
+# Rename 
 df = df.rename(columns={date_col: "Date", dozens_col: "Dozens", price_col: "TotalPrice"})
 
 # Clean types & sort
@@ -62,7 +62,7 @@ df["PricePerDonut"] = df["TotalPrice"] / (df["Dozens"] * 12)
 print("Columns:", df.columns.tolist())
 print(df.head().to_string(index=False))
 
-# === Charts ===
+#  Charts 
 
 # A) Dozens over time
 plt.figure()
