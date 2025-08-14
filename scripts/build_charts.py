@@ -2,7 +2,7 @@ import io, os, sys, requests
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# === Your published Google Sheets CSV link ===
+#published Google Sheets CSV link
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRkdOz6NFExg8W1QAsAGPmJuZza1G73f2JtdJLa_6KHaa4RQMmQhGjF_8Sotejrfl1FxIG7kcxlslc3/pub?output=csv"
 
 # Make output folder
@@ -16,7 +16,7 @@ csv_text = r.text
 # Read CSV
 df = pd.read_csv(io.StringIO(csv_text))
 
-# ---- Robust column matching (handles typos like "Dozens of Donu") ----
+#  column matching 
 def norm(s: str) -> str:
     return str(s).strip().lower().replace("  ", " ").replace("’", "'")
 
@@ -58,11 +58,11 @@ df = df.dropna(subset=["Dozens", "TotalPrice"])
 df["PricePerDozen"] = df["TotalPrice"] / df["Dozens"]
 df["PricePerDonut"] = df["TotalPrice"] / (df["Dozens"] * 12)
 
-# Debug (shows in Actions logs, helpful if anything breaks)
+# Debug 
 print("Columns:", df.columns.tolist())
 print(df.head().to_string(index=False))
 
-#  Charts 
+#  Chart by category
 
 # A) Dozens over time
 plt.figure()
@@ -80,7 +80,7 @@ plt.xlabel("Date"); plt.ylabel("USD")
 plt.xticks(rotation=45); plt.tight_layout()
 plt.savefig("figs/total_price_over_time.png", dpi=160)
 
-# C) Cumulative (running) total
+# C) Cumulative total
 plt.figure()
 cum = df["TotalPrice"].cumsum()
 plt.plot(df["Date"], cum, marker="o")
